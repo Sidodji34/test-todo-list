@@ -1,38 +1,163 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  box-sizing: border-box;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button {
+  border: none;
+  outline: none;
+}
+ul {
+  padding: 0px;
+}
+li {
+  list-style-type: none;
+}
+.content {
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  width: 700px;
+  height: 700px;
+  border: 1px solid black;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 20px auto;
+  box-sizing: border-box;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-.App-link {
-  color: #61dafb;
+.content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+.input-form__error-message {
+  color: rgb(246, 17, 17);
+  text-align: center;
+  font-size: 19px;
+}
+.input-form__title {
+  height: 40px;
+  font-size: 19px;
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 5px 0px 0px 0px;
+  padding: 10px;
+}
+.input-form__title:focus,
+.input-form__text:focus {
+  outline: none;
+}
+.input-form__text {
+  height: 60px;
+  font-size: 15px;
+  border-radius: 0px 0px 5px 5px;
+  padding: 10px;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+}
+.input-button__create-task {
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+.task-content {
+  flex-direction: row;
+  border: 1px solid black;
+  background-color: #ffffff;
+  margin: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.task-form__title-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.task-form__status-done {
+  width: 200px;
+  height: 10px;
+  border: rgb(75, 229, 75);
+  background-color: rgb(75, 229, 75);
+  border-radius: 5px;
+}
+.task-form__status-todo {
+  width: 200px;
+  height: 10px;
+  border: 1px solid rgb(225, 232, 20);
+  background-color: rgb(225, 232, 20);
+  border-radius: 5px;
+}
+.task-form {
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  word-wrap: break-word;
+}
+.task-form__title {
+  width: 600px;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+.task-form__files {
+  padding: 5px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.task-form__files-body {
+  display: flex;
+  padding-right: 10px;
+}
+.task-form__files-content {
+  border: 1px solid rgb(39, 36, 36);
+  border-radius: 5px;
+}
+.task-form__files-delite-button {
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: none;
+}
+.task-form__remove-button {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.task-form__edit-button,
+.task-form__done-button {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.task-form__done-button {
+  width: 34px;
+  height: 34px;
+}
+.task-form__bottom {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.task-form__hide-element {
+  display: none;
 }
