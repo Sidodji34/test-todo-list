@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import Input from './components/mainInput';
-import TaskForm from './components/taskForm';
-import TaskContext from './context/taskContext';
+import MainInput from './components/MainInput';
+import TaskView from './components/TaskView';
+import TaskContext from './context/TaskContext';
 
 function App() {
   const [task, setTask] = useState([]);
@@ -12,11 +12,11 @@ function App() {
       <div className='body_todo'>
         <div className='content'>
           <TaskContext.Provider value={{ task, setTask }}>
-            <Input />
+            <MainInput />
             <ul>
               {task &&
                 task.map((item) => {
-                  return <TaskForm key={item.id} props={item} />;
+                  return <TaskView key={item.id} props={item} />;
                 })}
             </ul>
           </TaskContext.Provider>

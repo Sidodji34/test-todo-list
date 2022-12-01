@@ -1,12 +1,12 @@
+import { useContext, useState } from 'react';
 import removeIcon from '../icons/removeIcon.svg';
 import editIcon from '../icons/editIcon.svg';
 import doneIcon from '../icons/doneIcon.svg';
-import { useContext, useState } from 'react';
-import TaskContext from '../context/taskContext';
-import EditTaskForm from './editTaskForm';
-import FilesForm from './filesForm';
+import TaskContext from '../context/TaskContext';
+import EditTask from './EditTask';
+import FilesView from './FilesView';
 
-function TaskForm({ props }) {
+function TaskView({ props }) {
   const { task, setTask } = useContext(TaskContext);
   const [done, setDoneTask] = useState(false);
   const [editTask, setEditTask] = useState(false);
@@ -16,22 +16,23 @@ function TaskForm({ props }) {
   };
 
   const handleDone = (taskName) => {
-    task.map((item) => {
-      if (item.title === taskName) return (item.status = 'DONE');
+    task.forEach((item) => {
+      if (item.title === taskName) item.status = 'DONE';
     });
     setDoneTask(true);
   };
 
   return (
     <li>
-      {editTask ? (
-        <EditTaskForm
+      {editTask && (
+        <EditTask
           key={props.title + props.id}
           props={props}
           setEditTask={setEditTask}
           editTask={editTask}
         />
-      ) : (
+      )}
+      {!editTask && (
         <div className='task-content'>
           <div className='task-form'>
             <div className='task-form__title-body'>
@@ -58,7 +59,7 @@ function TaskForm({ props }) {
               {props.files &&
                 props.files.map((item, index) => {
                   return (
-                    <FilesForm
+                    <FilesView
                       key={Date.now() + index}
                       fileName={item.name}
                       editTask={editTask}
@@ -86,4 +87,4 @@ function TaskForm({ props }) {
   );
 }
 
-export default TaskForm;
+export default TaskView;

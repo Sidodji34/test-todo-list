@@ -1,6 +1,6 @@
 import removeFileIcon from '../icons/removeFileIcon.svg';
 
-function FilesForm({ fileName, editTask, handleRemoveFile }) {
+function FilesView({ fileName, editTask, editFiles, setFiles }) {
   return (
     <div className='task-form__files-body'>
       <div className='task-form__files-content'>
@@ -13,10 +13,12 @@ function FilesForm({ fileName, editTask, handleRemoveFile }) {
             : 'task-form__hide-element'
         }
         style={{ backgroundImage: `url(${removeFileIcon})` }}
-        onClick={() => handleRemoveFile(fileName)}
+        onClick={() =>
+          setFiles(editFiles.filter((item) => item.name !== fileName))
+        }
       />
     </div>
   );
 }
 
-export default FilesForm;
+export default FilesView;

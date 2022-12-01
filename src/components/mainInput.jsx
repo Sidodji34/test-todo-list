@@ -1,10 +1,11 @@
 import { useState, useContext, useRef } from 'react';
-import TaskContext from '../context/taskContext';
-import DateInput from './inputs/dateInput';
-import TitleInput from './inputs/titleInput';
-import TextInput from './inputs/textInput';
+import TaskContext from '../context/TaskContext';
+import DateInput from './inputs/DateInput';
+import TitleInput from './inputs/TitleInput';
+import TextInput from './inputs/TextInput';
+import FileInput from './inputs/FileInput';
 
-function Input() {
+function MainInput() {
   const { task, setTask } = useContext(TaskContext);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -15,7 +16,6 @@ function Input() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    resetFilePath.current.value = '';
     if (title && text && date) {
       const newTask = {
         title,
@@ -30,24 +30,19 @@ function Input() {
       setText('');
       setDate('');
       setFiles([]);
+      resetFilePath.current.value = '';
     } else {
       setError(true);
     }
   };
 
   return (
-    <form className='input'>
-      <TitleInput title={title} setTitle={setTitle} setError={setError} />
-      <TextInput text={text} setText={setText} setError={setError} />
+    <form className='input' onFocus={() => setError(false)}>
+      <TitleInput title={title} setTitle={setTitle} />
+      <TextInput text={text} setText={setText} />
       <div className='input-form__bottom'>
-        <input
-          className='input-form__file'
-          type='file'
-          ref={resetFilePath}
-          onChange={(e) => setFiles([...e.target.files])}
-          accept='image/*,.png,.jpg,.gif,.web'
-        />
-        <DateInput date={date} setDate={setDate} setError={setError} />
+        <FileInput setFiles={setFiles} resetFilePath={resetFilePath} />
+        <DateInput date={date} setDate={setDate} />
       </div>
       {error && (
         <div className='input-form__error-message'>
@@ -65,4 +60,4 @@ function Input() {
   );
 }
 
-export default Input;
+export default MainInput;
